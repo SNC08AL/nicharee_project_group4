@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<head>
+  <link rel="icon" type="images/png" href="..\images\service.png">
+  <title>Project repairXML</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </head>
+
+
+<body>
+
+  <div class="container-sm shadow min-vh-100 py-2 color-background fonts">
+    <br><br><br><br><br>
+      <div class="row justify-content-center">
+        
+          <h1>Project repairXML</h1>
+
+        <br><br>
+
+          <div class="col-lg-3 col-sm-6 ">
+            <label for="startDate" class >วันเริ่มต้น</label>
+            <input id="startDate" class="form-control" type="date" />
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <label for="endDate">วันสิ้นสุด</label>
+            <input id="endDate" class="form-control" type="date" />
+          </div>
+        </div>
+        <br><br><br>
+        <div class="text-center py-3">
+          <button id="button" class="btn btn-outline-success">Submit</button>
+        </div>
+      </div>      
+ 
+    <script>
+let startDate = document.getElementById('startDate')
+let endDate = document.getElementById('endDate')
+let button = document.getElementById('button')
+
+startDate.addEventListener('change',(e)=>{
+  let startDate = e.target.value
+  document.getElementById('startDateSelected').innerText = startDate
+})
+
+endDate.addEventListener('change',(e)=>{
+  let endDate = e.target.value
+  document.getElementById('endDateSelected').innerText = endDate
+}) 
+
+button.addEventListener('click', function() {
+  var startDate = document.getElementById('startDate').value;
+  var endDate = document.getElementById('endDate').value;
+
+  var formattedStartDate = moment(startDate).format('YYYY-MM-DD');
+  var formattedEndDate = moment(endDate).format('YYYY-MM-DD');
+  var data = {
+      taxinvoice_business_date : formattedStartDate,
+      taxinvoice_business_date_end: formattedEndDate
+  };
+  console.log(data);
+
+  axios.post('http://localhost:6002/handler', data)
+  .then(function (response) {
+    if (response.data.status === "error") {
+      // An error occurred, display an alert
+      alert(response.data.message);
+    } else {
+      // No error occurred, do something else
+      alert("Data was sent successfully");
+    }
+  })
+  .catch(function (error) {
+    // An error occurred in the Axios request, display an alert
+    alert(error.message);
+  });
+});
+
+    </script>
+</body>
+
+</html>

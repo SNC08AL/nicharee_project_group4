@@ -1,0 +1,14 @@
+{
+    "database": {
+        "DATABASE_NAME": "etax",
+        "DB_HOST": "localhost",
+        "DB_PASSWORD": "1234",
+        "DB_USERNAME": "root"
+    },
+    "databaseVPC": {
+        "DATABASE_NAME": "etax",
+        "DB_HOST": "localhost",
+        "DB_PASSWORD": "1234",
+        "DB_USERNAME": "root"
+    }
+}

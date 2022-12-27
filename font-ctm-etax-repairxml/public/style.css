@@ -1,0 +1,17 @@
+.fonts{
+    font-size: 25px;
+    text-align: center;
+    font-family: 'Mitr', sans-serif;
+    color : white;
+}
+h1{
+    text-align: center;
+}
+
+.color-background {
+    background: linear-gradient(to bottom, #ffcc66 0%, #ccff66 100%);  }
+/* #start{
+    margin: 25px;
+    width: 350px;
+    height: 200px;
+} */
