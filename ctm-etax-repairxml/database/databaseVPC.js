@@ -11,6 +11,7 @@ function query(sqlParam) {
             password: config.databaseVPC.DB_PASSWORD,
             database: config.databaseVPC.DATABASE_NAME
         });
+        
         connection.connect(function(err) {
             if (err) {
                 console.log("Cannot connect to Database =>  " + JSON.stringify(err, null, 2));
